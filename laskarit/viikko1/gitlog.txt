@@ -120,3 +120,4 @@ Date:   Tue Oct 30 17:08:46 2018 +0200
                                                                                     tiedosto.txt | 0
                                                                                      1 file changed, 0 insertions(+), 0 deletions(-)
 
+git commit
