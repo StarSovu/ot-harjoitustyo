@@ -1,3 +1,9 @@
-# Kaikki
+# Ohjelmistotekniikka, harjoitustyö
 
-Tänään **ei ole** hyvä päivä ja jos joku niin kuin mukamas väittäisi että niin kuin mukamas olisi niin silloin se _ei olisi_ oikein väitetty.
+## Tehtävät
+
+### Viikko 1
+
+[gitlog.txt](https://github.com/StarSovu/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
+
+[komentorivi.txt](https://github.com/StarSovu/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
