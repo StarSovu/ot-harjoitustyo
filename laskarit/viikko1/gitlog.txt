@@ -1,0 +1,122 @@
+commit cc57811b88d939caaf65661619783f1678df119f
+Author: sovu <sonja.vuorinen@helsinki.fi>
+Date:   Tue Oct 30 17:08:46 2018 +0200
+
+    tiedostoja
+
+     tiedostoja/file1  | 0
+      tiedostoja/file2  | 0
+       tiedostoja/file22 | 0
+        3 files changed, 0 insertions(+), 0 deletions(-)
+
+        commit ba1a0860d7be7eac47c6bcd8b910c8dc5cc0ebda
+        Author: sovu <sonja.vuorinen@helsinki.fi>
+        Date:   Tue Oct 30 17:05:00 2018 +0200
+
+            tiedostot
+
+             tiedostoja/file1 | 0
+              tiedostoja/file2 | 0
+               tiedostoja/file3 | 0
+                3 files changed, 0 insertions(+), 0 deletions(-)
+
+                commit fb1539b40e7712379c122f4ac767b8075855d3f1
+                Author: sovu <sonja.vuorinen@helsinki.fi>
+                Date:   Tue Oct 30 16:51:22 2018 +0200
+
+                    muokkaukset
+
+                     eka.txt    | 8 ++++----
+                      kolmas.txt | 6 +++++-
+                       2 files changed, 9 insertions(+), 5 deletions(-)
+
+                       commit b70f4e9f96ad77653f85eddd387ff3b6e6e1d3b2
+                       Author: sovu <sonja.vuorinen@helsinki.fi>
+                       Date:   Tue Oct 30 16:48:48 2018 +0200
+
+                           lopullinen uudelleennimentä
+
+                            tiedosto.txt | 21 ---------------------
+                             1 file changed, 21 deletions(-)
+
+                             commit 9045fe3af67339a84773e2b5e9d71051f62e1b00
+                             Author: sovu <sonja.vuorinen@helsinki.fi>
+                             Date:   Tue Oct 30 16:48:26 2018 +0200
+
+                                 uudelleennimentä
+
+                                  eka.txt | 21 +++++++++++++++++++++
+                                   1 file changed, 21 insertions(+)
+
+                                   commit 25b5c425840979a4e91bfda1073083e9119de028
+                                   Author: sovu <sonja.vuorinen@helsinki.fi>
+                                   Date:   Tue Oct 30 16:47:13 2018 +0200
+
+                                       poisto
+
+                                        toinen.txt | 1 -
+                                         1 file changed, 1 deletion(-)
+                                         
+                                         commit 92ad77d2f08f1bfa4a90acc41567b25757a0336c
+                                         Author: sovu <sonja.vuorinen@helsinki.fi>
+                                         Date:   Tue Oct 30 16:22:19 2018 +0200
+
+                                             muutos
+
+                                              tiedosto.txt | 4 +---
+                                               1 file changed, 1 insertion(+), 3 deletions(-)
+
+                                               commit 1d12c8cdb42c4074d3d1942d4ef9b40cc26b005e
+                                               Author: sovu <sonja.vuorinen@helsinki.fi>
+                                               Date:   Tue Oct 30 16:20:36 2018 +0200
+
+                                                   muokkaus
+
+                                                    tiedosto.txt | 22 ++++++++++++++++++++++
+                                                     1 file changed, 22 insertions(+)
+
+                                                     commit d7cf9d23771f07dc98062572796de4eb4a590a5b
+                                                     Author: sovu <sonja.vuorinen@helsinki.fi>
+                                                     Date:   Tue Oct 30 16:14:11 2018 +0200
+
+                                                         stuff
+
+                                                          stuff/tiedosto.txt | 0
+                                                           1 file changed, 0 insertions(+), 0 deletions(-)
+
+                                                           commit d0a65a82669823db3c10ee90c761e7194e5d1503
+                                                           Author: sovu <sonja.vuorinen@helsinki.fi>
+                                                           Date:   Tue Oct 30 16:13:05 2018 +0200
+                                                               toinen ja kolmas
+
+                                                                kolmas.txt | 1 +
+                                                                 toinen.txt | 1 +
+                                                                  2 files changed, 2 insertions(+)
+
+                                                                  commit b6ef92c615e6ddce744134cab7800948c48eb8d8
+                                                                  Author: sovu <sonja.vuorinen@helsinki.fi>
+                                                                  Date:   Tue Oct 30 16:12:04 2018 +0200
+
+                                                                      kolmas.txt
+
+                                                                       kolmas.txt | 0
+                                                                        1 file changed, 0 insertions(+), 0 deletions(-)
+
+                                                                        commit 7a2bffbc512712f66d27f6908fd8cb14512eba9a
+                                                                        Author: sovu <sonja.vuorinen@helsinki.fi>
+                                                                        Date:   Tue Oct 30 16:09:44 2018 +0200
+
+                                                                            muutos ja lisäys
+
+                                                                             tiedosto.txt | 1 +
+                                                                              toinen.txt   | 0
+                                                                               2 files changed, 1 insertion(+)
+
+                                                                               commit b36cd6b624300d73cb2c42f08b0efd3fe3f979c3
+                                                                               Author: sovu <sonja.vuorinen@helsinki.fi>
+                                                                               Date:   Tue Oct 30 16:07:54 2018 +0200
+
+                                                                                   tiedosto.txt luotu
+                                                                                    tiedosto.txt | 0
+                                                                                     1 file changed, 0 insertions(+), 0 deletions(-)
+
