@@ -211,4 +211,11 @@ public class KassapaateTest {
         kassapaate.lataaRahaaKortille(kortti, 100);
         assertTrue(kassapaate.kassassaRahaa() == 100100);
     }
+    
+    @Test
+    public void kortilleEiVoiLadataNegatiivista() {
+        Maksukortti kortti = new Maksukortti(100);
+        kassapaate.lataaRahaaKortille(kortti, -100);
+        assertTrue(kortti.saldo() == 100);
+    }
 }
