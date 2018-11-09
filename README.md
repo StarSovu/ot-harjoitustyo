@@ -1,11 +1,8 @@
-# Ohjelmistotekniikka, harjoitustyö
+# Turnaussuunnittelija
 
-## Tehtävät
+## Dokumentaatio
 
-### Viikko 1
 
-[gitlog.txt](https://github.com/StarSovu/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
+[Vaatimusmäärittely](https://github.com/StarSovu/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 
-[komentorivi.txt](https://github.com/StarSovu/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
-
-O
+[Tuntikirjanpito](https://github.com/StarSovu/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
