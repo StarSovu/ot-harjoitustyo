@@ -35,3 +35,5 @@ Sovelluksen tarkoituksena on kirjata tuloksia turnauksisia lajeissa, joissa tehd
 - Pudotuspelit voidaan jättää kokonaan pois valitsemalla yksi lohko, josta vain yksi joukkue pääsee jatkoon.
 - Jos lohkot on jätetty pois, voidaan käyttää erilaista korisysteemiä, jossa korissa olevien joukkueiden määrän on oltava kahden potenssi. Samassa korissa olevat joukkueet ovat mahdollisimman kaukana toisistaan, eli esimerkiksi jos yhdessä korissa on 8 joukkuetta, joukkue voi päätyä saman korin joukkuetta vastaan aikaisintaan puolivälierissä.
   - Tässä voidaan tehdä siten, että on vain yksi kori, joka huomioidaan joukkueiden arpomisessa ensin, ja tämän jälkeen arvotaan kaikki loput joukkueet.
+- Käyttäjä pystyy tallentamaan näillä vaatimuksilla tehtyjä kilpailupohjia tietyillä nimillä. Jalkapallon MM-kisoissa 1998-2022 käytettävä on valmiiksi saatavana.
+- Käyttäjä voi tallentaa keskeneräisiä ja valmiita turnauksia ja muokata niitä millä hetkellä tahansa.
