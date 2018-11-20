@@ -30,19 +30,46 @@ public class Team implements Comparable<Team> {
         this.goalsAgainst = 0;
     }
     
-    public void addGroupStageGame(int goalsFor, int goalsAgainst) {
+    public void addGroupStageGame(Game game) {
         this.gamesplayed++;
-        this.goalsFor += goalsFor;
-        this.goalsAgainst += goalsAgainst;
+        this.goalsFor += game.getGoals1();
+        this.goalsAgainst += game.getGoals2();
         
-        if (goalsFor > goalsAgainst) {
+        if (game.victory()) {
             this.wins++;
             this.points += 3;
-        } else if (goalsFor < goalsAgainst) {
+        } else if (game.loss()) {
             this.losses++;
         } else {
             this.ties++;
             this.points++;
+        }
+    }
+    
+    public void replaceGroupStageGame(Game oldGame, Game newGame) {
+        this.goalsFor += newGame.getGoals1();
+        this.goalsFor -= oldGame.getGoals1();
+        this.goalsAgainst += newGame.getGoals2();
+        this.goalsAgainst -= oldGame.getGoals2();
+        
+        if (newGame.victory()) {
+            this.wins++;
+            this.points += 3;
+        } else if (newGame.loss()) {
+            this.losses++;
+        } else {
+            this.ties++;
+            this.points++;
+        }
+        
+        if (oldGame.victory()) {
+            this.wins--;
+            this.points -= 3;
+        } else if (oldGame.loss()) {
+            this.losses--;
+        } else {
+            this.ties--;
+            this.points--;
         }
     }
     
@@ -62,9 +89,15 @@ public class Team implements Comparable<Team> {
         return this.goalsAgainst;
     }
     
+    public String getTeamName() {
+        return this.name;
+    }
+    
     @Override
     public String toString() {
-        return this.name;
+        return this.name + ": " + this.points + " points, " + this.gamesplayed
+                + " " + this.wins + this.ties + this.losses + " "
+                + this.goalsFor + "-" + this.goalsAgainst;
     }
     
     @Override

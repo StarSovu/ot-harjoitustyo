@@ -7,52 +7,88 @@ import java.util.Collections;
 
 public class Group {
     private ArrayList<Team> teams;
-    private int gamesPlayed;
+    private ArrayList<Team> sortedTeams;
     private boolean done;
     private int homeTeamIndex;
     private int awayTeamIndex;
+    private boolean[] gamesPlayed;
+    private Game[] gameResults;
     
-    public Group(Team team1, Team team2, Team team3, Team team4) {
+    public Group(ArrayList<Team> teams) {
         this.teams = new ArrayList<>();
-        this.teams.add(team1);
-        this.teams.add(team2);
-        this.teams.add(team3);
-        this.teams.add(team4);
-        this.gamesPlayed = 0;
+        this.teams = teams;
+        
+        this.sortedTeams = new ArrayList<>();
+        for (int i = 0; i < teams.size(); i++) {
+            sortedTeams.add(teams.get(i));
+        }
+        
+        this.gamesPlayed = new boolean[6];
+        this.gameResults = new Game[6];
+        for (int i = 0; i < 6; i++) {
+            gamesPlayed[i] = false;
+            gameResults[i] = new Game(0, 0);
+        }
+        
         this.done = false;
         this.homeTeamIndex = 0;
         this.awayTeamIndex = 1;
     }
     
-    public void playGame(int goals1, int goals2) {
-        if (done) {
+    public void playGame(int gameNumber, int goals1, int goals2) {
+        if (gameNumber < 0 || gameNumber > 5 || goals1 < 0 || goals2 < 0) {
             return;
         }
         
-        teams.get(this.homeTeamIndex).addGroupStageGame(goals1, goals2);
-        teams.get(this.awayTeamIndex).addGroupStageGame(goals2, goals1);
+        this.setTeamsForGame(gameNumber);
         
-        gamesPlayed++;
-        if (gamesPlayed == 6) {
-            done = true;
-            return;
-        }
-        
-        this.updatePlayingTeams();
-    }
-    
-    public void updatePlayingTeams() {
-        if (awayTeamIndex == 3) {
-            homeTeamIndex++;
-            awayTeamIndex = homeTeamIndex + 1;
+        if (gamesPlayed[gameNumber]) {
+            int oldGoals1 = gameResults[gameNumber].getGoals1();
+            int oldGoals2 = gameResults[gameNumber].getGoals2();
+            teams.get(this.homeTeamIndex).replaceGroupStageGame(new Game(oldGoals1, oldGoals2), new Game(goals1, goals2));
+            teams.get(this.awayTeamIndex).replaceGroupStageGame(new Game(oldGoals2, oldGoals1), new Game(goals2, goals1));
         } else {
-            awayTeamIndex++;
+            teams.get(this.homeTeamIndex).addGroupStageGame(new Game(goals1, goals2));
+            teams.get(this.awayTeamIndex).addGroupStageGame(new Game(goals2, goals1));
+            gamesPlayed[gameNumber] = true;
         }
+        
+        gameResults[gameNumber] = new Game(goals1, goals2);
     }
     
     public void arrangeTeams() {
-        System.out.println(this.teams);
-        Collections.sort(this.teams);
-        System.out.println(this.teams);
+        Collections.sort(this.sortedTeams);
+    }
+    
+    public boolean checkIfDone() {
+        if (done) {
+            return true;
+        }
+        done = true;
+        for (int i = 0; i < 6; i++) {
+            if (!gamesPlayed[i]) {
+                done = false;
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    @Override
+    public String toString() {
+        return this.sortedTeams.toString();
+    }
+    
+    private void setTeamsForGame(int gameNumber) {
+        this.homeTeamIndex = 0;
+        this.awayTeamIndex = 0;
+        for (int i = 0; i <= gameNumber; i++) {
+            if (this.awayTeamIndex == 3) {
+                this.homeTeamIndex++;
+                this.awayTeamIndex = homeTeamIndex + 1;
+            } else {
+                awayTeamIndex++;
+            }
+        }
     }
 }
