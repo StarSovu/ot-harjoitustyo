@@ -79,6 +79,10 @@ public class Group {
         return this.sortedTeams.toString();
     }
     
+    public Team groupWinner() {
+        return this.sortedTeams.get(0);
+    }
+    
     private void setTeamsForGame(int gameNumber) {
         this.homeTeamIndex = 0;
         this.awayTeamIndex = 0;
