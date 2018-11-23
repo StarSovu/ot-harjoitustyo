@@ -27,16 +27,39 @@ public class Main {
         
         Group a = new Group(groupATeams);
         
-        int homeTeamIndex = 0;
-        int awayTeamIndex = 0;
-        for (int i = 0; i < 6; i++) {
-            if (awayTeamIndex == 3) {
-                homeTeamIndex++;
-                awayTeamIndex = homeTeamIndex + 1;
-            } else {
-                awayTeamIndex++;
+        while(true) {
+            System.out.println("Which game do you want to play?");
+            
+            int homeTeamIndex = 0;
+            int awayTeamIndex = 0;
+            
+            for (int i = 0; i < 6; i++) {
+                if (awayTeamIndex == 3) {
+                    homeTeamIndex++;
+                    awayTeamIndex = homeTeamIndex + 1;
+                } else {
+                    awayTeamIndex++;
+                }
+                String alreadyPlayedNote = "";
+                if (a.alreadyPlayed(i)) {
+                    alreadyPlayedNote = " - replace current result " + a.gameResult(i);
+                }
+                System.out.println(i + ": " + groupATeams.get(homeTeamIndex).getTeamName()
+                        + "-" + groupATeams.get(awayTeamIndex).getTeamName() + alreadyPlayedNote);
             }
-            System.out.println(groupATeams.get(homeTeamIndex).getTeamName() + "-" + groupATeams.get(awayTeamIndex).getTeamName());
+            
+            int gameNumber = Integer.parseInt(scanner.nextLine());
+            homeTeamIndex = 0;
+            awayTeamIndex = 0;
+            
+            for (int i = 0; i <= gameNumber; i++) {
+                if (awayTeamIndex == 3) {
+                    homeTeamIndex++;
+                    awayTeamIndex = homeTeamIndex + 1;
+                } else {
+                    awayTeamIndex++;
+                }
+            }
             
             System.out.print(groupATeams.get(homeTeamIndex).getTeamName() + " goals: ");
             int goals1 = Integer.parseInt(scanner.nextLine());
@@ -52,13 +75,15 @@ public class Main {
                 goals2 = Integer.parseInt(scanner.nextLine());
             }
 
-            a.playGame(i, goals1, goals2);
+            a.playGame(gameNumber, goals1, goals2);
             
             a.arrangeTeams();
+            
+            System.out.println("");
+            System.out.println("Current situation:");
             System.out.println(a);
+            System.out.println("");
             }
         
-        
+        }
     }
-    
-}

@@ -74,6 +74,22 @@ public class Group {
         return true;
     }
     
+    public boolean alreadyPlayed(int gameNumber) {
+        if (gameNumber < 0 || gameNumber > 5) {
+            return false;
+        }
+        
+        return gamesPlayed[gameNumber];
+    }
+    
+    public String gameResult(int gameNumber) {
+        if (!this.alreadyPlayed(gameNumber)) {
+            return "0-0";
+        } else {
+            return this.gameResults[gameNumber].toString();
+        }
+    }
+    
     @Override
     public String toString() {
         return this.sortedTeams.toString();

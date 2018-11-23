@@ -32,4 +32,9 @@ public class Game {
     public boolean loss() {
         return (this.goals2 > this.goals1);
     }
+    
+    @Override
+    public String toString() {
+        return this.goals1 + "-" + this.goals2;
+    }
 }
