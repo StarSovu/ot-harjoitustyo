@@ -48,8 +48,27 @@ public class GroupTest {
     }
     
     @Test
-    public void team1WinningAfterGame0WhenVictory() {
+    public void team1WinningAfterFirstGameWhenVictory() {
         group.playGame(0, 3, 0);
-        assertTrue(group.groupWinner().equals(teams.get(0)));
+        assertTrue(group.getTeamInPlace(1).equals(teams.get(0)));
+    }
+    
+    @Test
+    public void overAfterSixGames() {
+        for (int i = 0; i < 6; i++) {
+            group.playGame(i, 2, 3);
+        }
+        assertTrue(group.checkIfDone());
+    }
+    
+    @Test
+    public void game0NotAlreadyPlayed() {
+        assertTrue(!group.alreadyPlayed(0));
+    }
+    
+    @Test
+    public void game0AlreadyPlayedAfterItIsPlayed() {
+        group.playGame(0, 0, 0);
+        assertTrue(group.alreadyPlayed(0));
     }
 }

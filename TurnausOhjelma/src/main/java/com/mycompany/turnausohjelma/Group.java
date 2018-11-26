@@ -95,8 +95,8 @@ public class Group {
         return this.sortedTeams.toString();
     }
     
-    public Team groupWinner() {
-        return this.sortedTeams.get(0);
+    public Team getTeamInPlace(int place) {
+        return this.sortedTeams.get(place - 1);
     }
     
     private void setTeamsForGame(int gameNumber) {
