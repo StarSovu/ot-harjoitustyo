@@ -27,7 +27,7 @@
 	  <version>0.8.0</version>
 	  <configuration>
 	    <excludes>
-	      <exclude>**/com/mycompany/turnausohjelma/Main.class</exclude>
+	      <exclude>**/com/mycompany/tournament/Main.class</exclude>
 	    </excludes>
 	  </configuration>
 	  <executions>

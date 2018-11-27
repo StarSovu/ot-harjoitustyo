@@ -46,10 +46,11 @@ public class Main {
         
         GroupStage groupStage = new GroupStage(groups);
         
-        while(true) {
+        while (true) {
             System.out.println("In which group do you want to play? (Number 0 - "
                     + (answer - 1) + ")");
             int groupNumber = Integer.parseInt(scanner.nextLine());
+            System.out.println("");
             
             System.out.println("Which game do you want to play?");
             
