@@ -97,6 +97,10 @@ public class Group {
         return this.sortedTeams.get(place - 1);
     }
     
+    public ArrayList<Team> listTeamsInOriginalOrder() {
+        return this.teams;
+    }
+    
     private void setTeamsForGame(int gameNumber) {
         this.homeTeamIndex = 0;
         this.awayTeamIndex = 0;
