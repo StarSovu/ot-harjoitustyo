@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.turnausohjelma;
+package com.mycompany.tournament.logic;
 
 /**
  *
@@ -11,7 +11,7 @@ package com.mycompany.turnausohjelma;
  */
 public class Team implements Comparable<Team> {
     private String name;
-    private int gamesplayed;
+    private int gamesPlayed;
     private int wins;
     private int ties;
     private int losses;
@@ -21,7 +21,7 @@ public class Team implements Comparable<Team> {
     
     public Team(String teamName) {
         this.name = teamName;
-        this.gamesplayed = 0;
+        this.gamesPlayed = 0;
         this.wins = 0;
         this.ties = 0;
         this.losses = 0;
@@ -31,7 +31,7 @@ public class Team implements Comparable<Team> {
     }
     
     public void addGroupStageGame(Game game) {
-        this.gamesplayed++;
+        this.gamesPlayed++;
         this.goalsFor += game.getGoals1();
         this.goalsAgainst += game.getGoals2();
         
@@ -91,7 +91,7 @@ public class Team implements Comparable<Team> {
     
     @Override
     public String toString() {
-        return this.name + ": " + this.points + " points, " + this.gamesplayed
+        return this.name + ": " + this.points + " points, " + this.gamesPlayed
                 + " " + this.wins + this.ties + this.losses + " "
                 + this.goalsFor + "-" + this.goalsAgainst;
     }

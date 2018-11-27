@@ -1,6 +1,4 @@
-package com.mycompany.turnausohjelma;
-
-import com.mycompany.turnausohjelma.Team;
+package com.mycompany.tournament.logic;
 
 import java.util.ArrayList;
 import java.util.Collections;

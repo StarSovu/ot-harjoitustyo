@@ -1,4 +1,4 @@
-package com.mycompany.turnausohjelma;
+package com.mycompany.tournament.logic;
 
 /**
  *

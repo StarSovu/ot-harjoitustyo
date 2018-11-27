@@ -1,5 +1,5 @@
-import com.mycompany.turnausohjelma.Group;
-import com.mycompany.turnausohjelma.Team;
+package com.mycompany.tournament.logic;
+
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
