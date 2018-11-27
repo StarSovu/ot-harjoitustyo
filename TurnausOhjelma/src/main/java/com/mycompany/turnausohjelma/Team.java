@@ -35,15 +35,7 @@ public class Team implements Comparable<Team> {
         this.goalsFor += game.getGoals1();
         this.goalsAgainst += game.getGoals2();
         
-        if (game.victory()) {
-            this.wins++;
-            this.points += 3;
-        } else if (game.loss()) {
-            this.losses++;
-        } else {
-            this.ties++;
-            this.points++;
-        }
+        this.addPoints(game);
     }
     
     public void replaceGroupStageGame(Game oldGame, Game newGame) {
@@ -52,15 +44,7 @@ public class Team implements Comparable<Team> {
         this.goalsAgainst += newGame.getGoals2();
         this.goalsAgainst -= oldGame.getGoals2();
         
-        if (newGame.victory()) {
-            this.wins++;
-            this.points += 3;
-        } else if (newGame.loss()) {
-            this.losses++;
-        } else {
-            this.ties++;
-            this.points++;
-        }
+        this.addPoints(newGame);
         
         if (oldGame.victory()) {
             this.wins--;
@@ -70,6 +54,18 @@ public class Team implements Comparable<Team> {
         } else {
             this.ties--;
             this.points--;
+        }
+    }
+    
+    private void addPoints(Game game) {
+        if (game.victory()) {
+            this.wins++;
+            this.points += 3;
+        } else if (game.loss()) {
+            this.losses++;
+        } else {
+            this.ties++;
+            this.points++;
         }
     }
     
