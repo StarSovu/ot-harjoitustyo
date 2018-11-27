@@ -54,11 +54,25 @@ public class GroupTest {
     }
     
     @Test
-    public void overAfterSixGames() {
+    public void groupOfFourOverAfterSixGames() {
         for (int i = 0; i < 6; i++) {
             group.playGame(i, 2, 3);
         }
         assertTrue(group.checkIfDone());
+    }
+    
+    @Test
+    public void groupOfTwoOverAfterOneGame() {
+        ArrayList<Team> list = new ArrayList<>();
+        Team team1 = new Team("team1");
+        Team team2 = new Team("team2");
+        list.add(team1);
+        list.add(team2);
+        Group group2 = new Group(list);
+        
+        group2.playGame(0, 0, 0);
+        
+        assertTrue(group2.checkIfDone());
     }
     
     @Test

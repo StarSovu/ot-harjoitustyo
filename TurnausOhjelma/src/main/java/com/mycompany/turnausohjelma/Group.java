@@ -23,23 +23,23 @@ public class Group {
             sortedTeams.add(teams.get(i));
         }
         
-        this.gamesPlayed = new boolean[6];
-        this.gameResults = new Game[6];
-        for (int i = 0; i < 6; i++) {
+        int games = this.calculateNumberOfGames();
+        this.gamesPlayed = new boolean[games];
+        this.gameResults = new Game[games];
+        for (int i = 0; i < games; i++) {
             gamesPlayed[i] = false;
             gameResults[i] = new Game(0, 0);
         }
         
         this.done = false;
         this.homeTeamIndex = 0;
-        this.awayTeamIndex = 1;
+        this.awayTeamIndex = 0;
     }
     
     public void playGame(int gameNumber, int goals1, int goals2) {
-        if (gameNumber < 0 || gameNumber > 5 || goals1 < 0 || goals2 < 0) {
+        if (gameNumber < 0 || gameNumber >= gamesPlayed.length || goals1 < 0 || goals2 < 0) {
             return;
         }
-        
         this.setTeamsForGame(gameNumber);
         
         if (gamesPlayed[gameNumber]) {
@@ -65,7 +65,7 @@ public class Group {
             return true;
         }
         done = true;
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < this.gamesPlayed.length; i++) {
             if (!gamesPlayed[i]) {
                 done = false;
                 return false;
@@ -75,7 +75,7 @@ public class Group {
     }
     
     public boolean alreadyPlayed(int gameNumber) {
-        if (gameNumber < 0 || gameNumber > 5) {
+        if (gameNumber < 0 || gameNumber > this.gamesPlayed.length) {
             return false;
         }
         
@@ -103,12 +103,24 @@ public class Group {
         this.homeTeamIndex = 0;
         this.awayTeamIndex = 0;
         for (int i = 0; i <= gameNumber; i++) {
-            if (this.awayTeamIndex == 3) {
+            if (this.awayTeamIndex == this.teams.size() - 1) {
                 this.homeTeamIndex++;
                 this.awayTeamIndex = homeTeamIndex + 1;
             } else {
                 awayTeamIndex++;
             }
         }
+    }
+    
+    private int calculateNumberOfGames() {
+        int number = 1;
+        if (teams.size() == 2) {
+            return 1;
+        }
+        
+        for (int i = 2; i < teams.size(); i++) {
+            number += i;
+        }
+        return number;
     }
 }
