@@ -9,4 +9,5 @@
 | 23.11.| 1    | mahdollisuus muokata lohko-ottelujen tulosta mainissa ja tarkistaa kunkin ottelun tulos Group-luokassa |
 | 26.11.| 1    | useamman lohkon sisältävä luokka tehty (ei vielä käytössä) |
 | 27.11.| 5    | checkstylen käyttöönotto, Group-luokka soveltuu nyt kaikenkokoisille lohkoille, arkkitehtuuri, pakkausrakenne, Mainin kasvu |
+| 29.11.| 0    | mahdollista tehdä jar-tiedosto |
 | yht.  | 16   | |
