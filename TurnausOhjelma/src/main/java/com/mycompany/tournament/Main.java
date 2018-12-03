@@ -31,7 +31,7 @@ public class Main {
             String team3 = scanner.nextLine();
             System.out.print("Name of team 4: ");
             String team4 = scanner.nextLine();
-
+            
             ArrayList<Team> groupTeams = new ArrayList<>();
             groupTeams.add(new Team(team1));
             groupTeams.add(new Team(team2));

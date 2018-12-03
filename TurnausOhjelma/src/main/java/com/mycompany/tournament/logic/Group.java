@@ -52,6 +52,7 @@ public class Group {
         }
         
         gameResults[gameNumber] = new Game(goals1, goals2);
+        this.arrangeTeams();
     }
     
     public void arrangeTeams() {
@@ -62,18 +63,14 @@ public class Group {
         if (done) {
             return true;
         }
-        done = true;
-        for (int i = 0; i < this.gamesPlayed.length; i++) {
-            if (!gamesPlayed[i]) {
-                done = false;
-                return false;
-            }
+        if (this.numberOfGamesPlayed() == this.gamesPlayed.length) {
+            this.done = true;
         }
-        return true;
+        return done;
     }
     
     public boolean alreadyPlayed(int gameNumber) {
-        if (gameNumber < 0 || gameNumber > this.gamesPlayed.length) {
+        if (gameNumber < 0 || gameNumber >= this.gamesPlayed.length) {
             return false;
         }
         
@@ -99,6 +96,16 @@ public class Group {
     
     public ArrayList<Team> listTeamsInOriginalOrder() {
         return this.teams;
+    }
+    
+    public int numberOfGamesPlayed() {
+        int numberOfGamesPlayed = 0;
+        for (int i = 0; i < this.gamesPlayed.length; i++) {
+            if (this.gamesPlayed[i]) {
+                numberOfGamesPlayed++;
+            }
+        }
+        return numberOfGamesPlayed;
     }
     
     private void setTeamsForGame(int gameNumber) {

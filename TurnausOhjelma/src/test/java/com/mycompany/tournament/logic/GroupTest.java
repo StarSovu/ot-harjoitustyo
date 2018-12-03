@@ -85,4 +85,40 @@ public class GroupTest {
         group.playGame(0, 0, 0);
         assertTrue(group.alreadyPlayed(0));
     }
+    
+    @Test
+    public void playingAlreadyPlayedGameReplacesScore() {
+        group.playGame(0, 0, 0);
+        group.playGame(0, 3, 0);
+        assertTrue(teams.get(0).getGoalsFor() == 3);
+    }
+    
+    @Test
+    public void playingGameWithNumberTooBigDoesNothing() {
+        group.playGame(6, 0, 0);
+        assertTrue(group.numberOfGamesPlayed() == 0);
+    }
+    
+    @Test
+    public void alreadyPlayedGameWithTooBigNumberIsFalse() {
+        group.playGame(6, 0, 0);
+        assertTrue(!group.alreadyPlayed(6));
+    }
+    
+    @Test
+    public void gameResultOfGameNotYetPlayedIs00() {
+        assertEquals("0-0", group.gameResult(0));
+    }
+    
+    @Test
+    public void giveCorrectResultOfAlreadyPlayedGame() {
+        group.playGame(0, 0, 1);
+        assertEquals("0-1", group.gameResult(0));
+    }
+    
+    @Test
+    public void playingGameWithNegativeGoalsDoesNothing() {
+        group.playGame(0, -1, -1);
+        assertTrue(!group.alreadyPlayed(0));
+    }
 }

@@ -13,7 +13,6 @@ public class GroupStage {
     
     public void playGame(int groupNumber, int gameNumber, int goals1, int goals2) {
         this.groups.get(groupNumber).playGame(gameNumber, goals1, goals2);
-        this.groups.get(groupNumber).arrangeTeams();
     }
     
     public Team getPlacementInGroup(int place, int groupNumber) {
