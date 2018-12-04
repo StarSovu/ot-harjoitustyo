@@ -47,6 +47,11 @@ public class Main {
         
         GroupStage groupStage = new GroupStage(groups);
         
+        int numberOfGames = 0;
+        for (int i = 1; i < answer1; i++) {
+            numberOfGames += i;
+        }
+        
         while (true) {
             System.out.println("In which group do you want to play? (Number 0 - "
                     + (answer2 - 1) + ")");
@@ -60,8 +65,8 @@ public class Main {
             
             ArrayList<Team> teams = groupStage.getGroup(groupNumber).listTeamsInOriginalOrder();
             
-            for (int i = 0; i < 6; i++) {
-                if (awayTeamIndex == 3) {
+            for (int i = 0; i < numberOfGames; i++) {
+                if (awayTeamIndex == answer1 - 1) {
                     homeTeamIndex++;
                     awayTeamIndex = homeTeamIndex + 1;
                 } else {
@@ -81,7 +86,7 @@ public class Main {
             awayTeamIndex = 0;
             
             for (int i = 0; i <= gameNumber; i++) {
-                if (awayTeamIndex == 3) {
+                if (awayTeamIndex == answer1 - 1) {
                     homeTeamIndex++;
                     awayTeamIndex = homeTeamIndex + 1;
                 } else {
