@@ -40,6 +40,13 @@ public class Group {
         }
         this.setTeamsForGame(gameNumber);
         
+        addGameToTeams(gameNumber, goals1, goals2);
+        
+        gameResults[gameNumber] = new Game(goals1, goals2);
+        this.arrangeTeams();
+    }
+
+    private void addGameToTeams(int gameNumber, int goals1, int goals2) {
         if (gamesPlayed[gameNumber]) {
             int oldGoals1 = gameResults[gameNumber].getGoals1();
             int oldGoals2 = gameResults[gameNumber].getGoals2();
@@ -50,9 +57,6 @@ public class Group {
             teams.get(this.awayTeamIndex).addGroupStageGame(new Game(goals2, goals1));
             gamesPlayed[gameNumber] = true;
         }
-        
-        gameResults[gameNumber] = new Game(goals1, goals2);
-        this.arrangeTeams();
     }
     
     public void arrangeTeams() {

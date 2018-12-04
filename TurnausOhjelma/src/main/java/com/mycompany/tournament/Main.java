@@ -11,32 +11,33 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
+        System.out.println("How many teams in a group?");
+        int answer1 = Integer.parseInt(scanner.nextLine());
+        while (answer1 <= 1) {
+            System.out.println("Number of teams in a group must be at least 2. Try again.");
+            answer1 = Integer.parseInt(scanner.nextLine());
+        }
+        System.out.println("");
+        
         System.out.println("How many groups?");
-        int answer = Integer.parseInt(scanner.nextLine());
-        while (answer <= 0) {
-            System.out.println("Number of groups must be positive. Try again");
-            answer = Integer.parseInt(scanner.nextLine());
+        int answer2 = Integer.parseInt(scanner.nextLine());
+        while (answer2 <= 0) {
+            System.out.println("Number of groups must be positive. Try again.");
+            answer2 = Integer.parseInt(scanner.nextLine());
         }
         
         ArrayList<Group> groups = new ArrayList<>();
-        for (int i = 0; i < answer; i++) {
+        for (int i = 0; i < answer2; i++) {
             System.out.println("");
             System.out.println("Group " + i);
             
-            System.out.print("Name of team 1: ");
-            String team1 = scanner.nextLine();
-            System.out.print("Name of team 2: ");
-            String team2 = scanner.nextLine();
-            System.out.print("Name of team 3: ");
-            String team3 = scanner.nextLine();
-            System.out.print("Name of team 4: ");
-            String team4 = scanner.nextLine();
-            
             ArrayList<Team> groupTeams = new ArrayList<>();
-            groupTeams.add(new Team(team1));
-            groupTeams.add(new Team(team2));
-            groupTeams.add(new Team(team3));
-            groupTeams.add(new Team(team4));
+            
+            for (int j = 0; j < answer1; j++) {
+                System.out.print("Name of team " + (j+1) + ": ");
+                String team = scanner.nextLine();
+                groupTeams.add(new Team(team));
+            }
 
             Group group = new Group(groupTeams);
             groups.add(group);
@@ -48,7 +49,7 @@ public class Main {
         
         while (true) {
             System.out.println("In which group do you want to play? (Number 0 - "
-                    + (answer - 1) + ")");
+                    + (answer2 - 1) + ")");
             int groupNumber = Integer.parseInt(scanner.nextLine());
             System.out.println("");
             
