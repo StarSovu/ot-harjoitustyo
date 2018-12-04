@@ -11,4 +11,5 @@
 | 27.11.| 5    | checkstylen käyttöönotto, Group-luokka soveltuu nyt kaikenkokoisille lohkoille, arkkitehtuuri, pakkausrakenne, Mainin kasvu |
 | 29.11.| 0    | mahdollista tehdä jar-tiedosto |
 | 3.12. | 2    | jonkin verran pudotuspeliluokkaa, kasvatettu testikattavuutta |
+| 4.12. | 1    | sekvenssikaavio |
 | yht.  | 18   | |
