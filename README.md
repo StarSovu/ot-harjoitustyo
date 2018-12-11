@@ -4,12 +4,15 @@ Turnausohjelma antaa käyttäjän asettaa joukkueita lohkoihin sekä vaikuttaa l
 
 ## Dokumentaatio
 
-
 [Vaatimusmäärittely](https://github.com/StarSovu/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 
 [Tuntikirjanpito](https://github.com/StarSovu/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 
 [Arkkitehtuuri](https://github.com/StarSovu/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
+
+## Releaset
+
+[Viikko 5](https://github.com/StarSovu/ot-harjoitustyo/releases/tag/viikko5)
 
 ## Komentorivitoiminnot
 
