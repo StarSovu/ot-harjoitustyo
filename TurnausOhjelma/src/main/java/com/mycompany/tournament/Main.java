@@ -23,8 +23,8 @@ public class Main {
         
         System.out.println("How many groups?");
         int answer2 = Integer.parseInt(scanner.nextLine());
-        while (answer2 <= 0) {
-            System.out.println("Number of groups must be positive. Try again.");
+        while (!calculations.powerOfTwoChecker(answer2) || answer2 == 1) {
+            System.out.println("Number of groups must be a power of two and greater than one. Try again.");
             answer2 = Integer.parseInt(scanner.nextLine());
         }
         
@@ -54,14 +54,10 @@ public class Main {
         boolean advance = false;
         
         while (!advance) {
-            int groupNumber = 0;
-            
-            if (answer2 > 1) {
-                System.out.println("In which group do you want to play? (Number "
-                        + "0 - " + (answer2 - 1) + ")");
-                groupNumber = Integer.parseInt(scanner.nextLine());
-                System.out.println("");
-            }
+            System.out.println("In which group do you want to play? (Number 0 - "
+                        + (answer2 - 1) + ")");
+            int groupNumber = Integer.parseInt(scanner.nextLine());
+            System.out.println("");
             
             System.out.println("Which game do you want to play?");
             
@@ -87,6 +83,11 @@ public class Main {
             }
             
             int gameNumber = Integer.parseInt(scanner.nextLine());
+            while (gameNumber < 0 || gameNumber >= numberOfGames) {
+                System.out.println("Number you gave is out of range. Try again.");
+                gameNumber = Integer.parseInt(scanner.nextLine());
+            }
+            
             homeTeamIndex = 0;
             awayTeamIndex = 0;
             
@@ -133,21 +134,25 @@ public class Main {
         }
         
         System.out.println("");
+        System.out.println("How many teams per group advance?");
+        int answer3 = Integer.parseInt(scanner.nextLine());
+        while (!calculations.powerOfTwoChecker(answer3) || answer3 >= answer1) {
+            System.out.println("Number of advancing teams must be a power of two" +
+                    " and less than the number of teams per group. Try again.");
+            answer3 = Integer.parseInt(scanner.nextLine());
+        }
         
-        boolean powerOf2Groups = calculations.powerOfTwoChecker(answer2);
-        
-        if (powerOf2Groups) {
-            System.out.println("How many teams per group advance?");
-            int advancingTeams = Integer.parseInt(scanner.nextLine());
-            boolean powerOf2Teams = calculations.powerOfTwoChecker(advancingTeams);
-            
-            while (!powerOf2Teams || advancingTeams < 1 || advancingTeams >= answer1) {
-                System.out.println("Number of teams advancing not acceptable. Try again.");
-                advancingTeams = Integer.parseInt(scanner.nextLine());
-            
-                powerOf2Teams = calculations.powerOfTwoChecker(answer2);
+        System.out.println("");
+        System.out.println("All knockout stage round 1 games:");
+        for (int i = 0; i < answer3; i++) {
+            for (int j = 0; j < answer2; j+=2) {
+                System.out.println(groupStage.getPlacementInGroup(i+1, j).getTeamName() + "-"
+                + groupStage.getPlacementInGroup(answer3-i, j+1).getTeamName());
             }
         }
+        
+        System.out.println("");
+        System.out.println("Knockout Stage is not yet available.");
         
     }
 }
