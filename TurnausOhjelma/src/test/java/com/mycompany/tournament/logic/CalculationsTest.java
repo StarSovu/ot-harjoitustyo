@@ -17,11 +17,11 @@ import static org.junit.Assert.*;
  *
  * @author sovu
  */
-public class GroupStageTest {
+public class CalculationsTest {
     
     Calculations calculations;
     
-    public GroupStageTest() {
+    public CalculationsTest() {
     }
     
     @BeforeClass
