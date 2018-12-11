@@ -6,9 +6,8 @@ Sovelluksen tarkoituksena on kirjata tuloksia turnauksisia lajeissa, joissa tehd
 
 ## Perusversion tarjoamat toiminnallisuudet
 
-- Alustavasti turnaukset ovat samaa muotoa kuin jalkapallon MM-kisat vuosina 1998-2022.
-- Alussa valitaan 32 joukkuetta, jotka asetetaan kahdeksaan neljän maan lohkoon.
-- Käyttäjä asettaa tulokset lohko-otteluihin. Lohkossa kukin joukkue pelaa jokaista muuta lohkon joukkuetta vastaan. Sovelluksen toiminnan kannalta ei ole merkitystä, missä järjestyksessä otteluiden tulokset kirjataan.
+- Alussa valitaan joukkueita, jotka asetetaan samankokoisiin lohkoihin. Lohkojen määrän on oltava kahden potenssi.
+- Käyttäjä asettaa tulokset lohko-otteluihin. Lohkossa kukin joukkue pelaa jokaista muuta lohkon joukkuetta vastaan kerran. Sovelluksen toiminnan kannalta ei ole merkitystä, missä järjestyksessä otteluiden tulokset kirjataan.
 - Sovelluksesta pystyy katsomaan joukkuiden sijoitukset lohkossa (myös silloin, kun kaikkia tuloksia ei ole vielä ilmoitettu). Käyttäjä näkee joukkueen voitot, häviöt, tasapelit, tehdyt maalit, päästetyt maalit, maalieron ja pisteet. Pisteet määritetään siten, että voitosta saa kolme, tasapelistä yhden ja häviöstä nolla.
 - Kun kaikkien lohko-otteluiden tulokset on kirjattu, sovellus asettaa joukkueen pudotuspelikaavioon.
 - Pudotuspeleissä käyttäjä asettaa tulokset otteluihin, jolloin ottelun voittaja etenee seuraavalle kierrokselle, kunnes yksi voittaja ratkeaa. Myös välierissä hävinneet maat asetetaan pelaamaan pronssiottelussa.
