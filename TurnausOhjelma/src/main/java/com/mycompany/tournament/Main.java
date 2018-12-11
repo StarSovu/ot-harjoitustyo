@@ -52,11 +52,17 @@ public class Main {
             numberOfGames += i;
         }
         
-        while (true) {
-            System.out.println("In which group do you want to play? (Number 0 - "
-                    + (answer2 - 1) + ")");
-            int groupNumber = Integer.parseInt(scanner.nextLine());
-            System.out.println("");
+        boolean advance = false;
+        
+        while (!advance) {
+            int groupNumber = 0;
+            
+            if (answer2 > 1) {
+                System.out.println("In which group do you want to play? (Number "
+                        + "0 - " + (answer2 - 1) + ")");
+                groupNumber = Integer.parseInt(scanner.nextLine());
+                System.out.println("");
+            }
             
             System.out.println("Which game do you want to play?");
             
@@ -114,6 +120,52 @@ public class Main {
             System.out.println("Current situation:");
             System.out.println(groupStage.getGroup(groupNumber));
             System.out.println("");
+            
+            if (groupStage.checkIfDone()) {
+                System.out.println("You have completed all group stage games.");
+                System.out.println("Advance to Knockout Stage? (y/n)");
+                String answer = scanner.nextLine();
+                if (answer.equals("y")) {
+                    advance = true;
+                } else {
+                    System.out.println("");
+                }
             }
         }
+        
+        System.out.println("");
+        
+        boolean powerOf2Groups = true;
+        for (int i = answer2; i > 1; i /= 2) {
+            if (i % 2 == 1) {
+                powerOf2Groups = false;
+                break;
+            }
+        }
+        
+        if (powerOf2Groups) {
+            System.out.println("How many teams per group advance?");
+            int advancingTeams = Integer.parseInt(scanner.nextLine());
+            
+            boolean powerOf2Teams = true;
+            for (int i = answer2; i > 1; i /= 2) {
+                if (i % 2 == 1) {
+                    powerOf2Groups = false;
+                }
+            }
+            
+            while (!powerOf2Teams || advancingTeams < 1 || advancingTeams >= answer1) {
+                System.out.println("Number of teams advancing not acceptable. Try again.");
+                advancingTeams = Integer.parseInt(scanner.nextLine());
+            
+                powerOf2Teams = true;
+                for (int i = answer2; i > 1; i /= 2) {
+                    if (i % 2 == 1) {
+                        powerOf2Groups = false;
+                    }
+                }
+            }
+        }
+        
     }
+}
