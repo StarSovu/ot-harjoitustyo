@@ -121,4 +121,14 @@ public class GroupTest {
         group.playGame(0, -1, -1);
         assertTrue(!group.alreadyPlayed(0));
     }
+    
+    @Test
+    public void doneWhenAlreadyDone() {
+        for (int i = 0; i < 6; i++) {
+            group.playGame(i, 4, 3);
+        }
+        
+        group.checkIfDone();
+        assertTrue(group.checkIfDone());
+    }
 }

@@ -85,6 +85,10 @@ public class Team implements Comparable<Team> {
         return this.goalsAgainst;
     }
     
+    public int getGamesPlayed() {
+        return this.gamesPlayed;
+    }
+    
     public String getTeamName() {
         return this.name;
     }

@@ -50,4 +50,35 @@ public class TeamTest {
     public void defaultGoalDifferenceIs0() {
         assertTrue(team1.getGD() == 0);
     }
+    
+    @Test
+    public void defaultToString() {
+        assertEquals("Team1: 0 points, 0 000 0-0", team1.toString());
+    }
+    
+    @Test
+    public void toStringAfterOneGame() {
+        team1.addGroupStageGame(new Game(1, 0));
+        assertEquals("Team1: 3 points, 1 100 1-0", team1.toString());
+    }
+    
+    @Test
+    public void goalsAgainstIsOneAfterOneGoalAgainst() {
+        team1.addGroupStageGame(new Game(3, 1));
+        assertTrue(team1.getGoalsAgainst() == 1);
+    }
+    
+    @Test
+    public void gamesPlayedAfterOneGameIsOne() {
+        team1.addGroupStageGame(new Game(1, 2));
+        assertTrue(team1.getGamesPlayed() == 1);
+    }
+    
+    @Test
+    public void replacingGroupStageGameDoesNotChangeGamesPlayed() {
+        team1.addGroupStageGame(new Game(1, 2));
+        int gamesPlayed = team1.getGamesPlayed();
+        team1.replaceGroupStageGame(new Game(1, 2), new Game(2, 1));
+        assertTrue(team1.getGamesPlayed() == gamesPlayed);
+    }
 }
