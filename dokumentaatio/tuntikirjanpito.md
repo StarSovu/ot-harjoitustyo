@@ -12,5 +12,5 @@
 | 29.11.| 0    | mahdollista tehdä jar-tiedosto |
 | 3.12. | 2    | jonkin verran pudotuspeliluokkaa, kasvatettu testikattavuutta |
 | 4.12. | 3    | sekvenssikaavio, ohjelma mahdollistaa lohkon koon valitsemisen, github release |
-| 11.12.| 2    | main-luokan pientä edistystä, panikointia tämän kurssin eteen ilman että mitään tulee aikaiseksi, linkki github releaseen |
-| yht.  | 21   | |
+| 11.12.| 3    | main-luokan edistystä, linkki github releaseen, uusi laskuja suorittava luokka |
+| yht.  | 22   | |

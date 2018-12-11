@@ -1,5 +1,6 @@
 package com.mycompany.tournament.logic;
 
+import com.mycompany.tournament.calculations.Calculations;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -11,6 +12,7 @@ public class Group {
     private int awayTeamIndex;
     private boolean[] gamesPlayed;
     private Game[] gameResults;
+    private Calculations calculations;
     
     public Group(ArrayList<Team> teams) {
         this.teams = new ArrayList<>();
@@ -21,17 +23,22 @@ public class Group {
             sortedTeams.add(teams.get(i));
         }
         
-        int games = this.calculateNumberOfGames();
-        this.gamesPlayed = new boolean[games];
-        this.gameResults = new Game[games];
-        for (int i = 0; i < games; i++) {
-            gamesPlayed[i] = false;
-            gameResults[i] = new Game(0, 0);
-        }
+        this.calculations = new Calculations();
+        this.createGames(calculations.triangularNumber(teams.size() - 1));
         
         this.done = false;
         this.homeTeamIndex = 0;
         this.awayTeamIndex = 0;
+    }
+    
+    private void createGames(int games) {
+        this.gamesPlayed = new boolean[games];
+        this.gameResults = new Game[games];
+        
+        for (int i = 0; i < games; i++) {
+            gamesPlayed[i] = false;
+            gameResults[i] = new Game(0, 0);
+        }
     }
     
     public void playGame(int gameNumber, int goals1, int goals2) {
@@ -44,6 +51,19 @@ public class Group {
         
         gameResults[gameNumber] = new Game(goals1, goals2);
         this.arrangeTeams();
+    }
+    
+    private void setTeamsForGame(int gameNumber) {
+        this.homeTeamIndex = 0;
+        this.awayTeamIndex = 0;
+        for (int i = 0; i <= gameNumber; i++) {
+            if (this.awayTeamIndex == this.teams.size() - 1) {
+                this.homeTeamIndex++;
+                this.awayTeamIndex = homeTeamIndex + 1;
+            } else {
+                awayTeamIndex++;
+            }
+        }
     }
 
     private void addGameToTeams(int gameNumber, int goals1, int goals2) {
@@ -59,7 +79,7 @@ public class Group {
         }
     }
     
-    public void arrangeTeams() {
+    private void arrangeTeams() {
         Collections.sort(this.sortedTeams);
     }
     
@@ -102,6 +122,10 @@ public class Group {
         return this.teams;
     }
     
+    public ArrayList<Team> listTeamsInSortedOrder() {
+        return this.sortedTeams;
+    }
+    
     public int numberOfGamesPlayed() {
         int numberOfGamesPlayed = 0;
         for (int i = 0; i < this.gamesPlayed.length; i++) {
@@ -110,30 +134,5 @@ public class Group {
             }
         }
         return numberOfGamesPlayed;
-    }
-    
-    private void setTeamsForGame(int gameNumber) {
-        this.homeTeamIndex = 0;
-        this.awayTeamIndex = 0;
-        for (int i = 0; i <= gameNumber; i++) {
-            if (this.awayTeamIndex == this.teams.size() - 1) {
-                this.homeTeamIndex++;
-                this.awayTeamIndex = homeTeamIndex + 1;
-            } else {
-                awayTeamIndex++;
-            }
-        }
-    }
-    
-    private int calculateNumberOfGames() {
-        int number = 1;
-        if (teams.size() == 2) {
-            return 1;
-        }
-        
-        for (int i = 2; i < teams.size(); i++) {
-            number += i;
-        }
-        return number;
-    }
+    } 
 }
