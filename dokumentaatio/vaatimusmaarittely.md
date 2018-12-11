@@ -20,7 +20,7 @@ Sovelluksen tarkoituksena on kirjata tuloksia turnauksisia lajeissa, joissa tehd
 - Alkuvaiheessa voidaan asettaa joukkueet koreihin, jossa korien määrä on lohkossa olevien joukkueiden määrä ja korissa olevien joukkueiden määrä on lohkojen määrä. Sovellus arpoo joukkueet lohkoihin siten, että kaikki samassa korissa olevat joukkueet päätyvät eri lohkoihin.
   - Käyttäjä pystyy valitsemaan tietyn korin 1 joukkueen, joka päätyy automaattisesti lohkoon 1 (kuten isäntämaa jalkapallon MM-kisoissa vuodesta 2006 lähtien).
 - Joukkueet voidaan jakaa satunnaisesti lohkoihin myös ilman koreja.
-- Käyttäjä pystyy itse määrittämään lohkojen määrän ja lohkossa olevien maiden määrän. Alustavasti tässä lohkojen määrän on oltava kahden potenssi ja lohkosta kaksi parasta joukkuetta etenee pudotuspeleihin. Jokaisessa lohkossa on oltava vähintään kolme joukkuetta.
+- Käyttäjä pystyy itse määrittämään lohkojen määrän ja lohkossa olevien maiden määrän.
 - Myöhemmässä versiossa käyttäjä pystyy valitsemaan myös muun verran lohkoja ja asettaa säännöt, joiden perusteella esim. lohkokolmoset voivat edetä jatkoon. Käyttäjä pystyy myös valitsemaan, että esimerkiksi lohkon neljä parasta tai vain yksi paras (kahden sijasta) etenee pudotuspeleihin.
 - Käyttäjä pystyy itse määrittämään, millä perusteella joukkueet asetetaan pudotuspeleihin (tämä vaadittu, jos lohkosta päätyy joku muu määrä kuin 2 maata pudotuspeleihin).
 - Käyttäjä pystyy määrittämään, missä järjestyksessä pisteet, maaliero, tehdyt/päästetyt maalit ja keskinäiset ottelut vaikuttavat joukkueiden sijoitukseen lohkossa.
