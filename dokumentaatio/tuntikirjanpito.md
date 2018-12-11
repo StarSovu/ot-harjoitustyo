@@ -12,4 +12,5 @@
 | 29.11.| 0    | mahdollista tehdä jar-tiedosto |
 | 3.12. | 2    | jonkin verran pudotuspeliluokkaa, kasvatettu testikattavuutta |
 | 4.12. | 3    | sekvenssikaavio, ohjelma mahdollistaa lohkon koon valitsemisen, github release |
+| 11.12.| 2    | main-luokan pientä edistystä, ihan turhaa ajantuhlausta |
 | yht.  | 19   | |
