@@ -3,6 +3,7 @@ package com.mycompany.tournament;
 import com.mycompany.tournament.calculations.Calculations;
 import com.mycompany.tournament.logic.Group;
 import com.mycompany.tournament.logic.GroupStage;
+import com.mycompany.tournament.logic.KnockoutStage;
 import com.mycompany.tournament.logic.Team;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -13,7 +14,8 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Calculations calculations = new Calculations();
         
-        System.out.println("Start new? (1 = new tournament, 2 = get existing tournament");
+        System.out.println("Start new? (0 = new tournament, 1 = get existing tournament)");
+        System.out.println("");
         
         System.out.println("How many teams in a group?");
         int answer1 = Integer.parseInt(scanner.nextLine());
@@ -145,16 +147,26 @@ public class Main {
         }
         
         System.out.println("");
+        ArrayList<Team> knockoutStageTeams = new ArrayList<>();
         System.out.println("All knockout stage round 1 games:");
         for (int i = 0; i < answer3; i++) {
             for (int j = 0; j < answer2; j+=2) {
-                System.out.println(groupStage.getPlacementInGroup(i+1, j).getTeamName() + "-"
-                + groupStage.getPlacementInGroup(answer3-i, j+1).getTeamName());
+                Team team1 = groupStage.getPlacementInGroup(i+1, j);
+                Team team2 = groupStage.getPlacementInGroup(answer3-i, j+1);
+                knockoutStageTeams.add(team1);
+                knockoutStageTeams.add(team2);
+                System.out.println(team1.getTeamName() + "-" + team2.getTeamName());
             }
         }
         
         System.out.println("");
-        System.out.println("Knockout Stage is not yet available.");
+        
+        KnockoutStage knockoutStage = new KnockoutStage(knockoutStageTeams);
+        
+        advance = false;
+        while (!advance) {
+            
+        }
         
     }
 }

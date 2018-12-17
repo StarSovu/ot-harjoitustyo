@@ -26,4 +26,27 @@ public class Calculations {
         }
         return true;
     }
+    
+    public int powerOfTwo(int number) {
+        int power = 1;
+        if (number >= 1) {
+            for (int i = 0; i < number; i++) {
+                power *= 2;
+            }
+        } else {
+            for (int i = 0; i > number; i++) {
+                power /= 2;
+            }
+        }
+        return power;
+    }
+    
+    public int log2 (int number) {
+        int count = 0;
+        while (number > 1) {
+            count++;
+            number /= 2;
+        }
+        return count;
+    }
 }

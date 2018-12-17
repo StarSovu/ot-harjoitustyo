@@ -18,6 +18,7 @@ public class Team implements Comparable<Team> {
     private int points;
     private int goalsFor;
     private int goalsAgainst;
+    private boolean in;
     
     public Team(String teamName) {
         this.name = teamName;
@@ -28,6 +29,7 @@ public class Team implements Comparable<Team> {
         this.points = 0;
         this.goalsFor = 0;
         this.goalsAgainst = 0;
+        this.in = true;
     }
     
     public void addGroupStageGame(Game game) {
@@ -67,6 +69,14 @@ public class Team implements Comparable<Team> {
             this.ties++;
             this.points++;
         }
+    }
+    
+    public void loseKnockoutStage() {
+        this.in = false;
+    }
+    
+    public boolean isIn() {
+        return this.in;
     }
     
     public int getPoints() {
