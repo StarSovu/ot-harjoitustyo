@@ -13,6 +13,8 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Calculations calculations = new Calculations();
         
+        System.out.println("Start new? (1 = new tournament, 2 = get existing tournament");
+        
         System.out.println("How many teams in a group?");
         int answer1 = Integer.parseInt(scanner.nextLine());
         while (answer1 <= 1) {
