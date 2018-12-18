@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class KnockoutStage {
     ArrayList<Team> teams;
     int roundNumber;
+    int originalRoundNumber;
     int gamesPlayedInRound;
     boolean done;
     Calculations calculations;
@@ -14,12 +15,15 @@ public class KnockoutStage {
         this.teams = teams;
         this.calculations = new Calculations();
         this.roundNumber = calculations.log2(teams.size());
+        this.originalRoundNumber = this.roundNumber;
         this.done = false;
     }
     
-    public void playNormalGame(int gameNumber, boolean firstTeamWins) {
-        
-        if (!firstTeamWins) {
+    public void playGame(int gameNumber, Game game) {
+        if (this.roundNumber < 2) {
+            return;
+        }
+        if (game.loss()) {
             teams.get(gameNumber * 2).loseKnockoutStage();
         } else {
             teams.get(gameNumber * 2 + 1).loseKnockoutStage();
@@ -28,9 +32,13 @@ public class KnockoutStage {
         this.gamesPlayedInRound++;
     }
     
-    public boolean completeRound() {
-        if (gamesPlayedInRound != teams.size() / 2 || done) {
-            return false;
+    public boolean roundDone() {
+        return (gamesPlayedInRound != teams.size() / 2);
+    }
+    
+    public void completeRound() {
+        if (!this.roundDone() || done) {
+            return;
         }
         if (roundNumber == 1) {
             done = true;
@@ -40,7 +48,6 @@ public class KnockoutStage {
         }
         this.roundNumber--;
         this.gamesPlayedInRound = 0;
-        return true;
     }
     
     private void removeTeamsThatAreOut() {
@@ -53,5 +60,13 @@ public class KnockoutStage {
         }
         
         teams = teams2;
+    }
+    
+    public ArrayList<Team> getCurrentTeams() {
+        return this.teams;
+    }
+    
+    public int getNumberOfRemainingTeams() {
+        return this.teams.size();
     }
 }

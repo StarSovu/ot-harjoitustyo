@@ -36,7 +36,6 @@ public class Game {
                 this.needsPenalties = true;
             }
         }
-        
     }
     
     private void basicConstructor(int goals1, int goals2) {
@@ -54,30 +53,18 @@ public class Game {
             return;
         }
         this.penalties.add(success);
+        
+        if (success) {
+            if (this.penalties.size() % 2 == 1) {
+                this.penaltyGoals1++;
+            } else {
+                this.penaltyGoals2++;
+            }
+        }
+        
         if (this.penalties.size() >= 10 && this.penalties.size() % 2 == 0) {
-            if (!this.checkIfMorePenaltiesNeeded()) {
-                this.needsPenalties = false;
-            }
+            this.needsPenalties = (this.penaltyGoals1 == this.penaltyGoals2);
         }
-    }
-    
-    private boolean checkIfMorePenaltiesNeeded() {
-        int penalties1 = 0;
-        int penalties2 = 0;
-        
-        for (int i = 0; i < this.penalties.size(); i+= 2) {
-            if (this.penalties.get(i)) {
-                penalties1++;
-            }
-        }
-        
-        for (int i = 1; i < this.penalties.size(); i+= 2) {
-            if (this.penalties.get(i)) {
-                penalties2++;
-            }
-        }
-        
-        return (penalties1 == penalties2);
     }
     
     public int getGoals1() {
@@ -92,24 +79,32 @@ public class Game {
         return this.goals1 + this.extraGoals1;
     }
     
+    public int getExtraTimeGoals2() {
+        return this.goals2 + this.extraGoals2;
+    }
+    
     public boolean tie() {
         return (this.goals1 == this.goals2);
     }
     
     public boolean victory() {
-        return (this.goals1 + this.extraGoals1 > this.goals2 + this.extraGoals2);
+        return (this.victoryNumber1() > this.victoryNumber2());
     }
     
     public boolean loss() {
-        return (this.goals2 + this.extraGoals2 > this.goals1 + this.extraGoals2);
+        return (this.victoryNumber2() > this.victoryNumber1());
     }
     
-    public boolean extraTimeVictory() {
-        return (this.victory() && this.tie());
+    private int victoryNumber1() {
+        return this.goals1 + this.extraGoals1 + this.penaltyGoals1;
     }
     
-    public boolean extraTimeLoss() {
-        return (this.loss() && this.tie());
+    private int victoryNumber2() {
+        return this.goals2 + this.extraGoals2 + this.penaltyGoals2;
+    }
+    
+    public boolean needsPenalties() {
+        return (this.needsPenalties);
     }
     
     @Override

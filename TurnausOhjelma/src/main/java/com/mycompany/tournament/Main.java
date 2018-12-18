@@ -165,7 +165,14 @@ public class Main {
         
         advance = false;
         while (!advance) {
+            ArrayList<Team> remaining = knockoutStage.getCurrentTeams();
             
+            System.out.println("Which game do you want to play?");
+            for (int i = 0; i < knockoutStage.getNumberOfRemainingTeams(); i += 2) {
+                System.out.println(remaining.get(i) + " - " + remaining.get(i + 1));
+            }
+            
+            int gamePlayed = Integer.parseInt(scanner.nextLine());
         }
         
     }

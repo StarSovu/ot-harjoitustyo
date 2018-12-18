@@ -14,4 +14,5 @@
 | 4.12. | 3    | sekvenssikaavio, ohjelma mahdollistaa lohkon koon valitsemisen, github release |
 | 11.12.| 4    | main-luokan edistystä, linkki github releaseen, uusi laskuja suorittava luokka, testausten edistys |
 | 17.12.| 3    | pudotuspelien kehitystä (ei vielä valmis) |
-| yht.  | 26   | |
+| 18.12.| 1    | pudotuspelien pientä edistystä |
+| yht.  | 27   | |
