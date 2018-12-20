@@ -15,4 +15,5 @@
 | 11.12.| 4    | main-luokan edistystä, linkki github releaseen, uusi laskuja suorittava luokka, testausten edistys |
 | 17.12.| 3    | pudotuspelien kehitystä (ei vielä valmis) |
 | 18.12.| 1    | pudotuspelien pientä edistystä |
+| 19.12.| 2    | (toivottavasti) loppuun suoritettavissa oleva versio |
 | yht.  | 27   | |

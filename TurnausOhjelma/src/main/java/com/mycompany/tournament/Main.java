@@ -1,6 +1,7 @@
 package com.mycompany.tournament;
 
 import com.mycompany.tournament.calculations.Calculations;
+import com.mycompany.tournament.logic.Game;
 import com.mycompany.tournament.logic.Group;
 import com.mycompany.tournament.logic.GroupStage;
 import com.mycompany.tournament.logic.KnockoutStage;
@@ -159,21 +160,154 @@ public class Main {
             }
         }
         
-        System.out.println("");
-        
         KnockoutStage knockoutStage = new KnockoutStage(knockoutStageTeams);
         
-        advance = false;
+        if (knockoutStage.getRoundNumber() != 1) {
+            advance = false;
+        }
+        
+        
         while (!advance) {
+            System.out.println("");
+            
             ArrayList<Team> remaining = knockoutStage.getCurrentTeams();
             
             System.out.println("Which game do you want to play?");
-            for (int i = 0; i < knockoutStage.getNumberOfRemainingTeams(); i += 2) {
-                System.out.println(remaining.get(i) + " - " + remaining.get(i + 1));
+            int knockoutSize = remaining.size();
+            
+            for (int i = 0; i < knockoutSize; i += 2) {
+                if (!knockoutStage.alreadyPlayed(i/2)) {
+                    System.out.println(i/2 + ": " + remaining.get(i).getTeamName() + " - " + remaining.get(i + 1).getTeamName());
+                }
             }
             
+            System.out.println("");
             int gamePlayed = Integer.parseInt(scanner.nextLine());
+            while (gamePlayed < 0 || gamePlayed >= knockoutSize / 2) {
+                System.out.println("Number out of range. Try again.");
+                gamePlayed = Integer.parseInt(scanner.nextLine());
+            }
+            
+            String teamName1 = remaining.get(2 * gamePlayed).getTeamName();
+            String teamName2 = remaining.get(2 * gamePlayed + 1).getTeamName();
+            System.out.println("");
+            
+            Game game = playKnockoutGame(teamName1, teamName2, scanner);
+            
+            knockoutStage.playGame(gamePlayed, game);
+            knockoutStage.completeRound();
+            
+            if (knockoutStage.getRoundNumber() == 1) {
+                advance = true;
+            } 
         }
         
+        if (knockoutStage.getOriginalRoundNumber() != 1) {
+            System.out.println("");
+            
+            String teamName1 = knockoutStage.getCurrentTeams().get(2).getTeamName();
+            String teamName2 = knockoutStage.getCurrentTeams().get(3).getTeamName();
+            System.out.println("Third place match: " + teamName1 + " - " + teamName2);
+            
+            Game thirdPlace = playKnockoutGame(teamName1, teamName2, scanner);
+            knockoutStage.playThirdPlace(thirdPlace);
+        }
+        
+        System.out.println("");
+            
+        String teamName1 = knockoutStage.getCurrentTeams().get(0).getTeamName();
+        String teamName2 = knockoutStage.getCurrentTeams().get(1).getTeamName();
+        System.out.println("Final: " + teamName1 + " - " + teamName2);
+
+        Game finalGame = playKnockoutGame(teamName1, teamName2, scanner);
+        knockoutStage.playFinal(finalGame);
+        
+        System.out.println("");
+        System.out.println("Final results:");
+        ArrayList<Team> topTeams = knockoutStage.getCurrentTeams();
+        
+        int limit = 4;
+        if (knockoutStage.getOriginalRoundNumber() == 1) {
+            limit = 2;
+        }
+        
+        for (int i = 0; i < limit; i++) {
+            String teamName = topTeams.get(i).getTeamName();
+            System.out.println((i + 1) + ". " + teamName);
+        }
+    }
+    
+    public static Game playKnockoutGame(String teamName1, String teamName2, Scanner scanner) {
+        System.out.print(teamName1 + " goals: ");
+        int goals1 = Integer.parseInt(scanner.nextLine());
+        while (goals1 < 0) {
+            System.out.println("Number of goals cannot be negative. Try again");
+        }
+
+        System.out.print(teamName2 + " goals: ");
+        int goals2 = Integer.parseInt(scanner.nextLine());
+        while (goals2 < 0) {
+            System.out.println("Number of goals cannot be negative. Try again");
+        }
+
+        Game game;
+
+        if (goals1 != goals2) {
+            game = new Game(goals1, goals2);
+        } else {
+            System.out.println("Type extra time goals. Note: Only count goals scored during extra time!");
+
+            System.out.print(teamName1 + " goals: ");
+            int extraGoals1 = Integer.parseInt(scanner.nextLine());
+            while (extraGoals1 < 0) {
+                System.out.println("Number of goals cannot be negative. Try again");
+            }
+
+            System.out.print(teamName2 + " goals: ");
+            int extraGoals2 = Integer.parseInt(scanner.nextLine());
+            while (extraGoals2 < 0) {
+                System.out.println("Number of goals cannot be negative. Try again");
+            }
+
+            game = new Game(goals1, goals2, extraGoals1, extraGoals2);
+
+            if (game.needsPenalties()) {
+                System.out.println("");
+                System.out.println("Penalties:");
+                int penaltyCounter = 0;
+                while (game.needsPenalties()) {
+                    penaltyCounter++;
+
+                    String penaltyTeam;
+                    if (penaltyCounter % 2 == 1) {
+                        penaltyTeam = teamName1;
+                    } else {
+                        penaltyTeam = teamName2;
+                    }
+
+                    System.out.print(penaltyTeam + "'s turn to score. Will they succeed? ");
+                    String success = scanner.nextLine();
+                    while (!success.equals("yes") && !success.equals("no")) {
+                        System.out.print("Answer must be yes or no. Try again.");
+                        success = scanner.nextLine();
+                    }
+
+                    boolean succeeds = false;
+                    if (success.equals("yes")) {
+                        succeeds = true;
+                    }
+
+                    game.addPenalty(succeeds);
+                }
+
+                System.out.println("");
+                if (game.victory()) {
+                    System.out.println(teamName1 + " won.");
+                } else {
+                    System.out.println(teamName2 + " won.");
+                }
+            }
+        }
+        return game;
     }
 }
