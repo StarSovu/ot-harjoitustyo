@@ -41,7 +41,7 @@ public class Calculations {
         return power;
     }
     
-    public int log2 (int number) {
+    public int log2(int number) {
         int count = 0;
         while (number > 1) {
             count++;

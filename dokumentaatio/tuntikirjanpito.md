@@ -16,5 +16,5 @@
 | 17.12.| 3    | pudotuspelien kehitystä (ei vielä valmis) |
 | 18.12.| 1    | pudotuspelien pientä edistystä |
 | 20.12.| 2    | (toivottavasti) loppuun suoritettavissa oleva versio |
-| 21.12.| 0    | ei vielä mitään |
-| yht.  | 27   | |
+| 21.12.| 1    | virheiden korjausta, vaatimusmäärittelyn päivitys, checkstyle-tarkitus |
+| yht.  | 32   | |

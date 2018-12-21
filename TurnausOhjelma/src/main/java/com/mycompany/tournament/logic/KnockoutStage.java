@@ -94,7 +94,7 @@ public class KnockoutStage {
     
     private void requiredWhenRoundNumberGreaterThanTwo() {
         this.removeTeamsThatAreOut();
-        this.gamesPlayedInRoundTrue = new boolean[teams.size()/2];
+        this.gamesPlayedInRoundTrue = new boolean[teams.size() / 2];
         for (int i = 0; i < teams.size() / 2; i++) {
             this.gamesPlayedInRoundTrue[i] = false;
         }

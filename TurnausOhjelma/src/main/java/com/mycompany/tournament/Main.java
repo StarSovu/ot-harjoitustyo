@@ -151,9 +151,9 @@ public class Main {
         ArrayList<Team> knockoutStageTeams = new ArrayList<>();
         System.out.println("All knockout stage round 1 games:");
         for (int i = 0; i < answer3; i++) {
-            for (int j = 0; j < answer2; j+=2) {
-                Team team1 = groupStage.getPlacementInGroup(i+1, j);
-                Team team2 = groupStage.getPlacementInGroup(answer3-i, j+1);
+            for (int j = 0; j < answer2; j += 2) {
+                Team team1 = groupStage.getPlacementInGroup(i + 1, j);
+                Team team2 = groupStage.getPlacementInGroup(answer3 - i, j + 1);
                 knockoutStageTeams.add(team1);
                 knockoutStageTeams.add(team2);
                 System.out.println(team1.getTeamName() + "-" + team2.getTeamName());
@@ -176,8 +176,8 @@ public class Main {
             int knockoutSize = remaining.size();
             
             for (int i = 0; i < knockoutSize; i += 2) {
-                if (!knockoutStage.alreadyPlayed(i/2)) {
-                    System.out.println(i/2 + ": " + remaining.get(i).getTeamName() + " - " + remaining.get(i + 1).getTeamName());
+                if (!knockoutStage.alreadyPlayed(i / 2)) {
+                    System.out.println(i / 2 + ": " + remaining.get(i).getTeamName() + " - " + remaining.get(i + 1).getTeamName());
                 }
             }
             
