@@ -4,15 +4,15 @@ import com.mycompany.tournament.calculations.Calculations;
 import java.util.ArrayList;
 
 public class KnockoutStage {
-    ArrayList<Team> teams;
-    int roundNumber;
-    int originalRoundNumber;
-    boolean bronzeNeeded;
-    boolean finalNeeded;
-    int gamesPlayedInRound;
-    boolean[] gamesPlayedInRoundTrue;
-    boolean done;
-    Calculations calculations;
+    private ArrayList<Team> teams;
+    private int roundNumber;
+    private int originalRoundNumber;
+    private boolean bronzeNeeded;
+    private boolean finalNeeded;
+    private int gamesPlayedInRound;
+    private boolean[] gamesPlayedInRoundTrue;
+    private boolean done;
+    private Calculations calculations;
     
     public KnockoutStage(ArrayList<Team> teams) {
         this.teams = teams;
@@ -56,6 +56,8 @@ public class KnockoutStage {
             teams.add(2, teams.get(3));
             teams.remove(4);
         }
+        
+        this.gamesPlayedInRound++;
     }
     
     public void playFinal(Game game) {
@@ -69,6 +71,8 @@ public class KnockoutStage {
             teams.add(0, teams.get(1));
             teams.remove(2);
         }
+        
+        this.gamesPlayedInRound++;
     }
     
     public boolean roundDone() {
@@ -153,5 +157,9 @@ public class KnockoutStage {
             return false;
         }
         return this.gamesPlayedInRoundTrue[gameNumber];
+    }
+    
+    public boolean done() {
+        return this.done;
     }
 }

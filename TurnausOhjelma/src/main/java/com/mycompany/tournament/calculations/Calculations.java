@@ -33,10 +33,6 @@ public class Calculations {
             for (int i = 0; i < number; i++) {
                 power *= 2;
             }
-        } else {
-            for (int i = 0; i > number; i++) {
-                power /= 2;
-            }
         }
         return power;
     }

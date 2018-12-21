@@ -65,4 +65,14 @@ public class CalculationsTest {
     public void sixIsNotAPowerOfTwo() {
         assertTrue(!calculations.powerOfTwoChecker(6));
     }
+    
+    @Test
+    public void twoToThePowerOfZero() {
+        assertTrue(calculations.powerOfTwo(0) == 1);
+    }
+    
+    @Test
+    public void twoToThePowerOfFour() {
+        assertTrue(calculations.powerOfTwo(4) == 16);
+    }
 }
