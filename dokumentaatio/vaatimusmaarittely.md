@@ -6,7 +6,7 @@ Sovelluksen tarkoituksena on kirjata tuloksia turnauksisia lajeissa, joissa tehd
 
 ## Perusversion tarjoamat toiminnallisuudet
 
-- Alussa valitaan joukkueita, jotka asetetaan samankokoisiin lohkoihin. Lohkojen määrän on oltava kahden potenssi.
+- Alussa valitaan joukkueita, jotka asetetaan samankokoisiin lohkoihin. Lohkojen määrän on oltava kahden potenssi ja lohkossa on oltava vähintään kaksi joukkuetta.
 - Käyttäjä asettaa tulokset lohko-otteluihin. Lohkossa kukin joukkue pelaa jokaista muuta lohkon joukkuetta vastaan kerran. Sovelluksen toiminnan kannalta ei ole merkitystä, missä järjestyksessä otteluiden tulokset kirjataan.
 - Sovelluksesta pystyy katsomaan joukkuiden sijoitukset lohkossa (myös silloin, kun kaikkia tuloksia ei ole vielä ilmoitettu). Käyttäjä näkee joukkueen voitot, häviöt, tasapelit, tehdyt maalit, päästetyt maalit, maalieron ja pisteet. Pisteet määritetään siten, että voitosta saa kolme, tasapelistä yhden ja häviöstä nolla.
 - Kun kaikkien lohko-otteluiden tulokset on kirjattu, sovellus asettaa joukkueen pudotuspelikaavioon.

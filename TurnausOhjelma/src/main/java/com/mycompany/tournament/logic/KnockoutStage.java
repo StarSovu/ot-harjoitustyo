@@ -72,7 +72,7 @@ public class KnockoutStage {
     }
     
     public boolean roundDone() {
-        return (gamesPlayedInRound != teams.size() / 2);
+        return (gamesPlayedInRound == teams.size() / 2);
     }
     
     public void completeRound() {
@@ -145,7 +145,7 @@ public class KnockoutStage {
     }
     
     public int getOriginalRoundNumber() {
-        return this.roundNumber;
+        return this.originalRoundNumber;
     }
     
     public boolean alreadyPlayed(int gameNumber) {
