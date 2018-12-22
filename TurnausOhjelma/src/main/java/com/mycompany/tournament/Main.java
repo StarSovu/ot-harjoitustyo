@@ -10,37 +10,41 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
+    
+    static Scanner scanner = new Scanner(System.in);
+    static Calculations calculations = new Calculations();
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        Calculations calculations = new Calculations();
-        
-        System.out.println("Start new? (0 = new tournament, 1 = get existing tournament)");
-        System.out.println("");
-        
-        System.out.println("How many teams in a group?");
-        int answer1 = Integer.parseInt(scanner.nextLine());
-        while (answer1 <= 1) {
-            System.out.println("Number of teams in a group must be at least 2. Try again.");
-            answer1 = Integer.parseInt(scanner.nextLine());
+        System.out.println("How many teams in a group? (must be between 2 and 44,721)");
+        int numberOfTeamsInGroup = 0;
+        while (numberOfTeamsInGroup < 2) {
+            String teamNumber = scanner.nextLine();
+            boolean acceptable = goThroughAcceptance(teamNumber, 2, 44721, false);
+            if (acceptable) {
+                numberOfTeamsInGroup = Integer.parseInt(teamNumber);
+            }
         }
         System.out.println("");
         
         System.out.println("How many groups?");
-        int answer2 = Integer.parseInt(scanner.nextLine());
-        while (!calculations.powerOfTwoChecker(answer2) || answer2 == 1) {
-            System.out.println("Number of groups must be a power of two and greater than one. Try again.");
-            answer2 = Integer.parseInt(scanner.nextLine());
+        int numberOfGroups = 0;
+        while (numberOfGroups < 2) {
+            String groupNumber = scanner.nextLine();
+            boolean acceptable = goThroughAcceptance(groupNumber, 2, 1000000000, true);
+            if (acceptable) {
+                numberOfGroups = Integer.parseInt(groupNumber);
+            }
         }
+        System.out.println("");
         
         ArrayList<Group> groups = new ArrayList<>();
-        for (int i = 0; i < answer2; i++) {
+        for (int i = 0; i < numberOfGroups; i++) {
             System.out.println("");
             System.out.println("Group " + i);
             
             ArrayList<Team> groupTeams = new ArrayList<>();
             
-            for (int j = 0; j < answer1; j++) {
+            for (int j = 0; j < numberOfTeamsInGroup; j++) {
                 System.out.print("Name of team " + (j + 1) + ": ");
                 String team = scanner.nextLine();
                 groupTeams.add(new Team(team));
@@ -54,14 +58,22 @@ public class Main {
         
         GroupStage groupStage = new GroupStage(groups);
         
-        int numberOfGames = calculations.triangularNumber(answer1 - 1);
+        int numberOfGames = calculations.triangularNumber(numberOfTeamsInGroup - 1);
         
         boolean advance = false;
         
         while (!advance) {
             System.out.println("In which group do you want to play? (Number 0 - "
-                        + (answer2 - 1) + ")");
-            int groupNumber = Integer.parseInt(scanner.nextLine());
+                        + (numberOfGroups - 1) + ")");
+            int groupNumber = numberOfGroups;
+            
+            while (groupNumber >= numberOfGroups) {
+                String groupNumberString = scanner.nextLine();
+                boolean acceptable = goThroughAcceptance(groupNumberString, 0, numberOfGroups, false);
+                if (acceptable) {
+                    groupNumber = Integer.parseInt(groupNumberString);
+                }
+            }
             System.out.println("");
             
             System.out.println("Which game do you want to play?");
@@ -72,7 +84,7 @@ public class Main {
             ArrayList<Team> teams = groupStage.getGroup(groupNumber).listTeamsInOriginalOrder();
             
             for (int i = 0; i < numberOfGames; i++) {
-                if (awayTeamIndex == answer1 - 1) {
+                if (awayTeamIndex == numberOfTeamsInGroup - 1) {
                     homeTeamIndex++;
                     awayTeamIndex = homeTeamIndex + 1;
                 } else {
@@ -86,18 +98,21 @@ public class Main {
                 System.out.println(i + ": " + teams.get(homeTeamIndex).getTeamName()
                         + "-" + teams.get(awayTeamIndex).getTeamName() + alreadyPlayedNote);
             }
-            
-            int gameNumber = Integer.parseInt(scanner.nextLine());
-            while (gameNumber < 0 || gameNumber >= numberOfGames) {
-                System.out.println("Number you gave is out of range. Try again.");
-                gameNumber = Integer.parseInt(scanner.nextLine());
+            int gameNumber = 999999999;
+            while (gameNumber >= numberOfGames) {
+                String gameNumberString = scanner.nextLine();
+                boolean acceptable = goThroughAcceptance(gameNumberString, 0, numberOfGames, false);
+                if (acceptable) {
+                    gameNumber = Integer.parseInt(gameNumberString);
+                }
             }
+            System.out.println("");
             
             homeTeamIndex = 0;
             awayTeamIndex = 0;
             
             for (int i = 0; i <= gameNumber; i++) {
-                if (awayTeamIndex == answer1 - 1) {
+                if (awayTeamIndex == numberOfTeamsInGroup - 1) {
                     homeTeamIndex++;
                     awayTeamIndex = homeTeamIndex + 1;
                 } else {
@@ -106,18 +121,10 @@ public class Main {
             }
             
             System.out.print(teams.get(homeTeamIndex).getTeamName() + " goals: ");
-            int goals1 = Integer.parseInt(scanner.nextLine());
-            while (goals1 < 0) {
-                System.out.print("Number of goals cannot be negative. Try again: ");
-                goals1 = Integer.parseInt(scanner.nextLine());
-            }
+            int goals1 = getNumberOfGoals();
             
             System.out.print(teams.get(awayTeamIndex).getTeamName() + " goals: ");
-            int goals2 = Integer.parseInt(scanner.nextLine());
-            while (goals2 < 0) {
-                System.out.print("Number of goals cannot be negative. Try again: ");
-                goals2 = Integer.parseInt(scanner.nextLine());
-            }
+            int goals2 = getNumberOfGoals();
 
             groupStage.playGame(groupNumber, gameNumber, goals1, goals2);
             
@@ -128,7 +135,7 @@ public class Main {
             
             if (groupStage.checkIfDone()) {
                 System.out.println("You have completed all group stage games.");
-                System.out.println("Advance to Knockout Stage? (y/n)");
+                System.out.println("Advance to Knockout Stage? (Type y to advance. Anything else means you have to change a game result.)");
                 String answer = scanner.nextLine();
                 if (answer.equals("y")) {
                     advance = true;
@@ -140,20 +147,19 @@ public class Main {
         
         System.out.println("");
         System.out.println("How many teams per group advance?");
-        int answer3 = Integer.parseInt(scanner.nextLine());
-        while (!calculations.powerOfTwoChecker(answer3) || answer3 >= answer1) {
-            System.out.println("Number of advancing teams must be a power of two" +
-                    " and less than the number of teams per group. Try again.");
-            answer3 = Integer.parseInt(scanner.nextLine());
+        String advancingTeams = scanner.nextLine();
+        while (!goThroughAcceptance(advancingTeams, 1, numberOfTeamsInGroup, true)) {
+            advancingTeams = scanner.nextLine();
         }
+        int numberOfAdvancingTeams = Integer.parseInt(advancingTeams);
         
         System.out.println("");
         ArrayList<Team> knockoutStageTeams = new ArrayList<>();
         System.out.println("All knockout stage round 1 games:");
-        for (int i = 0; i < answer3; i++) {
-            for (int j = 0; j < answer2; j += 2) {
+        for (int i = 0; i < numberOfAdvancingTeams; i++) {
+            for (int j = 0; j < numberOfGroups; j += 2) {
                 Team team1 = groupStage.getPlacementInGroup(i + 1, j);
-                Team team2 = groupStage.getPlacementInGroup(answer3 - i, j + 1);
+                Team team2 = groupStage.getPlacementInGroup(numberOfAdvancingTeams - i, j + 1);
                 knockoutStageTeams.add(team1);
                 knockoutStageTeams.add(team2);
                 System.out.println(team1.getTeamName() + "-" + team2.getTeamName());
@@ -182,17 +188,22 @@ public class Main {
             }
             
             System.out.println("");
-            int gamePlayed = Integer.parseInt(scanner.nextLine());
-            while (gamePlayed < 0 || gamePlayed >= knockoutSize / 2) {
-                System.out.println("Number out of range. Try again.");
-                gamePlayed = Integer.parseInt(scanner.nextLine());
+            int gamePlayed = knockoutSize;
+            while (gamePlayed >= knockoutSize / 2) {
+                String gamePlayedString = scanner.nextLine();
+                if (goThroughAcceptance(gamePlayedString, 0, 1000000000, false)) {
+                    gamePlayed = Integer.parseInt(gamePlayedString);
+                    if(gamePlayed >= knockoutSize / 2) {
+                        System.out.println("Number out of range. Try again.");
+                    }
+                }
             }
             
             String teamName1 = remaining.get(2 * gamePlayed).getTeamName();
             String teamName2 = remaining.get(2 * gamePlayed + 1).getTeamName();
             System.out.println("");
             
-            Game game = playKnockoutGame(teamName1, teamName2, scanner);
+            Game game = playKnockoutGame(teamName1, teamName2);
             
             knockoutStage.playGame(gamePlayed, game);
             knockoutStage.completeRound();
@@ -209,7 +220,7 @@ public class Main {
             String teamName2 = knockoutStage.getCurrentTeams().get(3).getTeamName();
             System.out.println("Third place match: " + teamName1 + " - " + teamName2);
             
-            Game thirdPlace = playKnockoutGame(teamName1, teamName2, scanner);
+            Game thirdPlace = playKnockoutGame(teamName1, teamName2);
             knockoutStage.playThirdPlace(thirdPlace);
         }
         
@@ -219,7 +230,7 @@ public class Main {
         String teamName2 = knockoutStage.getCurrentTeams().get(1).getTeamName();
         System.out.println("Final: " + teamName1 + " - " + teamName2);
 
-        Game finalGame = playKnockoutGame(teamName1, teamName2, scanner);
+        Game finalGame = playKnockoutGame(teamName1, teamName2);
         knockoutStage.playFinal(finalGame);
         
         System.out.println("");
@@ -237,18 +248,57 @@ public class Main {
         }
     }
     
-    public static Game playKnockoutGame(String teamName1, String teamName2, Scanner scanner) {
-        System.out.print(teamName1 + " goals: ");
-        int goals1 = Integer.parseInt(scanner.nextLine());
-        while (goals1 < 0) {
-            System.out.println("Number of goals cannot be negative. Try again");
+    public static boolean canBeUsed(String text) {
+        String newText = text.replaceAll("[^0-9]+","");
+        if (newText.length() > 9) {
+            return false;
         }
+        if (!text.isEmpty()) {
+            return (text.equals(newText));
+        }
+        return false;
+    }
+    
+    public static boolean goThroughAcceptance(String text, int lowerBound, int upperBound, boolean mustBePowerOfTwo) {
+        if (!canBeUsed(text)) {
+            System.out.println("Number must be a non-negative integer and less than a billion. Try again.");
+            return false;
+        }
+        int number = Integer.parseInt(text);
+        if (number < lowerBound) {
+            System.out.println("Number must be at least " + lowerBound + ". Try again.");
+        } else if (number > upperBound) {
+            System.out.println("Number cannot be more than " + upperBound + ". Try again.");
+        } else if (!calculations.powerOfTwoChecker(number) && mustBePowerOfTwo) {
+            System.out.println("Number must be a power of two. Try again.");
+        } else {
+            return true;
+        }
+        return false;
+    }
+    
+    public static int getNumberOfGoals() {
+        String goals = scanner.nextLine();
+        while (!goalNumberAcceptance(goals)) {
+            goals = scanner.nextLine();
+        }
+        return Integer.parseInt(goals);
+    }
+    
+    public static boolean goalNumberAcceptance(String text) {
+        if (!canBeUsed(text)) {
+            System.out.println("Number of goals must be a non-negative integer and less than a billion. Try again.");
+            return false;
+        }
+        return true;
+    }
+
+    public static Game playKnockoutGame(String teamName1, String teamName2) {
+        System.out.print(teamName1 + " goals: ");
+        int goals1 = getNumberOfGoals();
 
         System.out.print(teamName2 + " goals: ");
-        int goals2 = Integer.parseInt(scanner.nextLine());
-        while (goals2 < 0) {
-            System.out.println("Number of goals cannot be negative. Try again");
-        }
+        int goals2 = getNumberOfGoals();
 
         Game game;
 
@@ -258,16 +308,10 @@ public class Main {
             System.out.println("Type extra time goals. Note: Only count goals scored during extra time!");
 
             System.out.print(teamName1 + " goals: ");
-            int extraGoals1 = Integer.parseInt(scanner.nextLine());
-            while (extraGoals1 < 0) {
-                System.out.println("Number of goals cannot be negative. Try again");
-            }
+            int extraGoals1 = getNumberOfGoals();
 
             System.out.print(teamName2 + " goals: ");
-            int extraGoals2 = Integer.parseInt(scanner.nextLine());
-            while (extraGoals2 < 0) {
-                System.out.println("Number of goals cannot be negative. Try again");
-            }
+            int extraGoals2 = getNumberOfGoals();
 
             game = new Game(goals1, goals2, extraGoals1, extraGoals2);
 

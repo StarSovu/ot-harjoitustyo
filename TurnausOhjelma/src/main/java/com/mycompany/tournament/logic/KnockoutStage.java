@@ -49,14 +49,11 @@ public class KnockoutStage {
         if (!bronzeNeeded) {
             return;
         }
-        
         this.bronzeNeeded = false;
-        
         if (game.loss()) {
             teams.add(2, teams.get(3));
             teams.remove(4);
         }
-        
         this.gamesPlayedInRound++;
     }
     

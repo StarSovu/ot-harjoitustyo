@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.tournament.logic;
+package com.mycompany.tournament.calculations;
 
-import com.mycompany.tournament.calculations.Calculations;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
