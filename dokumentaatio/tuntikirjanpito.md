@@ -17,4 +17,5 @@
 | 18.12.| 1    | pudotuspelien pientä edistystä |
 | 20.12.| 2    | (toivottavasti) loppuun suoritettavissa oleva versio |
 | 21.12.| 3    | virheiden korjausta, vaatimusmäärittelyn päivitys, checkstyle-tarkistus, testausta |
-| yht.  | 34   | |
+| 22.12.| 1    | testauksen jatkoa |
+| yht.  | 35   | |
