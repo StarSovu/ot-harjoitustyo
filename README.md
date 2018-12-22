@@ -1,6 +1,6 @@
 # Turnausohjelma
 
-Turnausohjelma antaa käyttäjän asettaa joukkueita lohkoihin sekä vaikuttaa lohko-otteluiden tuloksiin.
+Turnausohjelma antaa käyttäjän asettaa joukkueita lohkoihin sekä vaikuttaa lohko-otteluiden tuloksiin. Siitä joukkueet etenevät pudotuspeleihin, joiden tuloksia käyttäjä voi asettaa kunnes parhaat 4 ovat selvillä.
 
 ## Dokumentaatio
 
