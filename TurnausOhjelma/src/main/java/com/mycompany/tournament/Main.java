@@ -193,7 +193,7 @@ public class Main {
                 String gamePlayedString = scanner.nextLine();
                 if (goThroughAcceptance(gamePlayedString, 0, 1000000000, false)) {
                     gamePlayed = Integer.parseInt(gamePlayedString);
-                    if(gamePlayed >= knockoutSize / 2) {
+                    if (gamePlayed >= knockoutSize / 2) {
                         System.out.println("Number out of range. Try again.");
                     }
                 }
@@ -249,7 +249,7 @@ public class Main {
     }
     
     public static boolean canBeUsed(String text) {
-        String newText = text.replaceAll("[^0-9]+","");
+        String newText = text.replaceAll("[^0-9]+", "");
         if (newText.length() > 9) {
             return false;
         }
