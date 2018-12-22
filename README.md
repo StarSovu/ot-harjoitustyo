@@ -18,6 +18,8 @@ Turnausohjelma antaa käyttäjän asettaa joukkueita lohkoihin sekä vaikuttaa l
 
 [Viikko 6](https://github.com/StarSovu/ot-harjoitustyo/releases/tag/viikko6)
 
+[Loppupalautus](https://github.com/StarSovu/ot-harjoitustyo/releases/tag/loppupalautus)
+
 ## Komentorivitoiminnot
 
 ### Testaus
